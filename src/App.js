@@ -1,28 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Planner from './components/Planner'
 
-import './App.css'
+const App = () => {
 
-import Button from './components/Button'
+  const [plannerData, setPlannerData] = useState([
+    [false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+  ])
 
-function App() {
+  const handlePlannerChange = (hour, weekDay, checked) => {
+    let newPlanner = [...plannerData]
+    newPlanner[weekDay][hour] = !checked
+    setPlannerData(newPlanner)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p id='title'>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-
-          <Button text='Fazer Login' />
-
-        </a>
-      </header>
+    <div>
+      <Planner plannerData={plannerData} onChange={handlePlannerChange} />
     </div>
   )
 }
