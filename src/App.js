@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import ReactToExcel from 'react-html-table-to-excel'
 import Planner from './components/Planner'
+import './App.css'
 
 const App = () => {
 
   const [plannerData, setPlannerData] = useState([
-    [false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
     [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
     [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
     [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
@@ -22,6 +24,14 @@ const App = () => {
   return (
     <div>
       <Planner plannerData={plannerData} onChange={handlePlannerChange} />
+      <ReactToExcel
+        className='btn'
+        table='tableDownload'
+        filename='HorárioMédico'
+        sheet='sheet 1'
+        buttonText='Baixar'
+
+      />
     </div>
   )
 }
